@@ -8,6 +8,7 @@ gem 'omniauth-twitter'
 gem 'kramdown'
 gem 'draper'
 gem 'twitter'
+gem 'heroku'
 
 group :production do
   gem 'pg'
@@ -19,7 +20,6 @@ group :development, :test do
   gem 'rails_best_practices'
   gem 'ffaker'
   gem 'quiet_assets'
-  gem 'thin'
 end
 
 group :test do
