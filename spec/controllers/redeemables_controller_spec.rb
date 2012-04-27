@@ -6,6 +6,35 @@ describe RedeemablesController do
   let!(:bob) { Fabricate(:user) }
   let!(:clemence) { Fabricate(:user) }
   
+  describe "DELETE destroy" do
+    it "should let the owner delete a code" do
+      first = share.unredeemed_codes.first
+            
+      expect {
+        delete :destroy, {:share_id => share.to_param, :id => first.to_param}, {user_id:share.owner.id}
+      }.to change(share.redeemables, :count).by(-1)
+    end
+    
+    it "should not let a non-owner delete a code" do
+      last = share.unredeemed_codes.last
+      
+      expect {
+        delete :destroy, {:share_id => share.to_param, :id => last.to_param}, {user_id:clemence.id}
+      }.to change(share.unredeemed_codes, :count).by(0)
+    end
+    
+    it "should not let a redeemed code by deleted" do
+      last = share.unredeemed_codes.last
+      last.redeemer = bob
+      last.save
+      
+      expect {
+        delete :destroy, {:share_id => share.to_param, :id => last.to_param}, {user_id:share.owner.id}
+      }.to change(share.redeemables, :count).by(0)
+      
+    end
+  end
+  
   describe "GET acquire" do
     it "should let a user here if codes are still left and they have one." do
       get :acquire, {:id => share.to_param}, {user_id:alice.id}

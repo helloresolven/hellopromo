@@ -1,5 +1,7 @@
 Hellopromo::Application.routes.draw do
   resources :shares, :except => :index do
+    resources :redeemables, :only => :destroy
+    
     member do
       get '/acquire' => 'redeemables#acquire', :as => 'acquire'
       post '/redeem' => 'redeemables#redeem', :as => 'redeem'

@@ -2,9 +2,23 @@ class RedeemablesController < ApplicationController
   before_filter :require_login
   before_filter :require_share
   before_filter :require_not_disabled
-  before_filter :require_not_owner
-  before_filter :require_not_redeemed
-  before_filter :require_has_codes
+  before_filter :require_not_owner, :except => [:destroy]
+  before_filter :require_not_redeemed, :except => [:destroy]
+  before_filter :require_has_codes, :except => [:destroy]
+  
+  def destroy
+    notice = "You can't do that."
+    
+    if current_user == @share.owner
+      code = Redeemable.find_by_id(params[:id])
+      if code.redeemer.nil?
+        code.destroy
+        notice = "Code removed."
+      end
+    end
+    
+    redirect_to share_path(@share), :notice => notice
+  end
   
   def acquire
   end
@@ -30,7 +44,7 @@ class RedeemablesController < ApplicationController
   
   private
   def require_share
-    @share ||= Share.find_by_share_code(params[:id])
+    @share ||= Share.find_by_share_code(params[:share_id] || params[:id])
     redirect_to(root_url, :notice => "No such share exists.") unless @share
   end
   
