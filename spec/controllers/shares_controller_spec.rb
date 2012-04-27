@@ -20,7 +20,7 @@ require 'spec_helper'
 
 describe SharesController do
   let!(:user) { Fabricate(:user) }
-  let!(:share) { share = Fabricate(:share); share.owner = Fabricate(:user); share.save; share }
+  let!(:share) { share = Fabricate(:share) }
 
   def valid_attributes
     {title:"test", url:"http://example.com/", codes:"12\n\n124\n214\n\n"}
@@ -130,10 +130,10 @@ describe SharesController do
 
     describe "with invalid params" do
       it "can't update a share that is disabled" do
-        expect {
-          share.disabled = true
-          put :update, {:id => share.to_param, :share => {title:"!"}}, {user_id:share.owner.id}
-        }.to_not change(share, :title)        
+        share.disabled = true
+        share.save
+        put :update, {:id => share.to_param, :share => {title:"!"}}, {user_id:share.owner.id}
+        share.title.should_not eq "!"     
       end
       
       it "assigns the share as @share" do
@@ -155,6 +155,7 @@ describe SharesController do
   describe "DELETE destroy" do
     it "disables the requested share if the current user owns it" do
       delete :destroy, {:id => share.to_param}, {user_id:share.owner_id}
+      share.reload
       share.disabled.should be_true
     end
     

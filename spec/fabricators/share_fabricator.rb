@@ -6,4 +6,5 @@ Fabricator(:share) do
   promoted true
   redeemables!(:count => 2)
   owner! { Fabricate(:user) }
+  disabled false
 end
