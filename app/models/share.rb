@@ -43,7 +43,7 @@ class Share < ActiveRecord::Base
   
   def convert_codes
     if self.codes
-      self.codes.split.each { |code| self.redeemables.create(code:code) }
+      self.codes.split(/\n+/).each { |code| self.redeemables.create(code:code) }
     end
     
     self.codes = nil
