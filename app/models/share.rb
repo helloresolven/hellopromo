@@ -23,7 +23,7 @@ class Share < ActiveRecord::Base
   end
   
   def redeemed_codes
-    Redeemable.where("share_id = ? AND redeemer_id", self)
+    Redeemable.where("share_id = ? AND redeemer_id <> ?", self, nil)
   end
   
   def to_tweet
