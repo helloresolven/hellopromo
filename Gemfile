@@ -9,6 +9,7 @@ gem 'kramdown'
 gem 'draper'
 gem 'twitter'
 gem 'heroku'
+gem 'thin'
 
 group :production do
   gem 'pg'
