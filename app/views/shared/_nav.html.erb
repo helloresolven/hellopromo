@@ -1,0 +1,23 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <%= link_to "Hello, Promo!", root_url, :class => "brand" %>
+      <div class="container nav-collapse">        
+        <ul class="nav pull-right">
+          <% if logged_in? %>
+          <li><%= link_to "@#{current_user.nickname}", profile_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to "Sign Out", signout_path %></li>
+          <% else %>
+          <li><%= link_to 'Sign in with Twitter', signin_path %></li>
+          <% end %>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>

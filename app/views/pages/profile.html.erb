@@ -1,0 +1,13 @@
+<h1>Your Codes</h1>
+<ol>
+  <% current_user.redeemed_codes.each do |code| %>
+  <li><%= render code %></li>
+  <% end %>
+</ol>
+<hr>
+<h1>Your Shares</h1>
+<ol>
+  <% current_user.shares.each do |share| %>
+  <li><%= render share %></li>
+  <% end %>
+</ol>

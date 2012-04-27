@@ -1,0 +1,2 @@
+module RedeemablesHelper
+end

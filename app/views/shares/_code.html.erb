@@ -1,0 +1,13 @@
+<% unless !current_user || current_user == @share.owner %>
+<div class="hero-unit" style="text-align:center">
+  <p>
+  <% if current_user.has_code_for?(@share) %>
+    Your Code: <%= "#{Redeemable.where(redeemer_id:current_user.id, share_id:@share.id).first.code}" %>
+  <% elsif @share.unredeemed_codes.count > 0 %>
+    <%= link_to t('.codes', :default => "Get A Code!"), acquire_share_path(@share), :class => 'btn btn-large btn-primary' %><br>
+  <% else %>
+    <%= link_to t('.nocodes', :default => "No codes left!"), nil, :class => 'btn btn-large disabled' %>
+  <% end %>
+  </p>
+</div>
+<% end %>

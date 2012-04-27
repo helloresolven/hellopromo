@@ -1,0 +1,26 @@
+<h1>
+  <%=t '.title', :default => t('helpers.titles.new', 
+  :default => "Create New Share") %>
+</h1>
+<div class="well">
+<p>By creating a share:</p>
+<ul>
+  <li>Hello, Promo will manage giving unique codes to individual users.</li>
+  <li>Hello, Promo can send a tweet for users who take a code in order to advertise your app.</li>
+  <li>Hello, Promo let's you see who has taken a code.</li>
+  <li>Hello, Promo let's you add more codes or removed unused codes.</li>
+</ul>
+
+<p>By creating a share, you agree to the following:</p>
+<ul>
+  <li>You have permission to distribute these codes.</li>
+  <li>Your title, description, &amp; URL should accurately represent your app and any legal obligations required to redeem the code.</li>
+  <li>Hello, Promo may disable a share for any reason, but definitely for fraud or legal reasons.</li>
+  <li>Redeemed codes may not be taken away from users.</li>
+</ul>
+</div>
+
+            
+<%= render :partial => 'form' %>
+
+

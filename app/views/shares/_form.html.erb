@@ -1,0 +1,11 @@
+<%= simple_form_for @share, :html => { :class => 'form-vertical' } do |f| %>
+<%= f.input :title, :hint => "This will be mentioned in tweets.", :input_html => {:class=> "span6"} %>
+  <%= f.input :url, :label => "URL", :hint => "This will be linked to in tweets.", :input_html => { :class => "span6" } %>  
+  <%= f.input :description, :hint => "You may use Markdown.", :input_html => { :rows => 4, :class => "span6" }%>
+  <%= f.input :codes, :as => :text, :hint => "Each code must go on a new line.", :input_html => { :rows => 4, :class => "span6" } %>
+  <%= f.input :need_tweet, :label => false, :hint => "&nbsp; Require a tweet to get code?".html_safe %> 
+  
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+  </div>
+<% end %>

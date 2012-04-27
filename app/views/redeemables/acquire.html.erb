@@ -1,0 +1,9 @@
+<h1>Acquiring code for <%= link_to @share.title, share_path(@share) %>...</h1>
+
+<% if @share.need_tweet %>
+<p>In order to get this code, we'll be tweeting the following on your account (@<%= current_user.nickname%>).</p>
+<p class="well"><%= @share.to_tweet %>
+<p>If you are okay with this tweet, you may click the button below.</p>
+<% end %>
+
+<p><%= link_to "Get A Code!", redeem_share_path(@share), :method => :post, :class => "btn btn-large" %></p>

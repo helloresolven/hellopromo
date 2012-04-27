@@ -1,0 +1,23 @@
+<% if current_user == @share.owner %>
+<div class="hero-unit">
+  <p style="text-align:center">
+    <% unless @share.disabled %>
+    <%= link_to t('.edit', :default => "Manage #{@share.title}"), edit_share_path(@share), :class => 'btn btn-large btn-info' %>
+    <%= link_to t('.edit', :default => "Disable Share"), share_path(@share), :class => 'btn btn-large btn-danger', :method => :delete, :confirm => "Are you sure? This may not be reversed." %>
+    <% end %>
+  </p>
+  <hr>
+  <h4>Redeemed Codes</h4>
+  <ol>
+  <% @share.redeemed_codes.each do |code| %>
+  <li><%= code.code %> - @<%= code.redeemer.nickname %></li>
+  <% end %>
+  </ol>
+  <h4>Unredeemed Codes</h4>
+  <ol>
+  <% @share.unredeemed_codes.each do |code| %>
+  <li><%= code.code %></li>
+  <% end %>
+  </ol>
+</div>
+<% end %>

@@ -1,0 +1,14 @@
+<div class="well">
+  <h2>
+    <%= @share.title %> 
+    <small>&mdash; <%= link_to @share.owner.name, "http://twitter.com/#{@share.owner.nickname}" %></small>
+  </h2>
+  <hr>
+  <%= raw @share.description_html %>
+  <hr>
+  <h4>URL: <%= link_to @share.url, @share.url %></h4>
+</div>
+<%= render :partial => "code" %>
+<%= render :partial => "manage" %>
+
+
