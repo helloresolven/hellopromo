@@ -21,14 +21,13 @@ class User < ActiveRecord::Base
     self.redeemed_shares.include? share
   end
   
+  def client
+    @client ||= Twitter::Client.new(:oauth_token => self.token, :oauth_token_secret => self.secret)
+  end
+  
   def can_tweet?
-    Twitter.configure do |config|
-      config.oauth_token = self.token
-      config.oauth_token_secret = self.secret
-    end
-    
     begin
-      Twitter.verify_credentials
+      client.verify_credentials
       return true
     rescue Twitter::Error::Unauthorized => e
       return false
@@ -36,11 +35,6 @@ class User < ActiveRecord::Base
   end
   
   def tweet_message(message)
-    Twitter.configure do |config|
-      config.oauth_token = self.token
-      config.oauth_token_secret = self.secret
-    end
-    
-    Twitter.update(message)
+    client.update(message)
   end
 end
