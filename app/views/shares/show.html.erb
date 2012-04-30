@@ -1,15 +1,21 @@
 <div class="well">
-  <h2>
+  <h1>
     <%= @share.title %> 
-    <small>&mdash; <%= link_to @share.owner.name, "http://twitter.com/#{@share.owner.nickname}" %></small>
-  </h2>
+    <small><%= link_to @share.owner.name, "http://twitter.com/#{@share.owner.nickname}" %></small>   
+  </h1>
+  <h2><%= link_to @share.url, @share.url %></h2>
   <hr>
   <%= @share.description_html.html_safe %>
-  <hr>
-  <h4>URL: <%= link_to @share.url, @share.url %></h4>
 </div>
 
-<%= render :partial => "code" %>
-<%= render(:partial => "manage") if current_user == @share.owner %>
+
+
+<% if current_user == @share.owner %>
+  <%= render(:partial => "manage") %>
+  <hr>
+  <p><%= link_to "Edit This Share", edit_share_path(@share), :class => "btn btn-large btn-primary" %></p>
+<% else %>
+  <%= render(:partial => "code") %>
+<% end %>
 
 

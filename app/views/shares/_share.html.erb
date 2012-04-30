@@ -1,5 +1,0 @@
-<% if share.disabled %>
-<del><%= link_to share.title, share_path(share) %></del>
-<% else %>
-<%= link_to share.title, share_path(share) %> &mdash; <%= share.unredeemed_codes.count %> codes left.
-<% end %>

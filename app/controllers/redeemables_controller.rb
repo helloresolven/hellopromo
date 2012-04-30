@@ -31,7 +31,7 @@ class RedeemablesController < ApplicationController
     
     if code.valid?  # ensures that user doesn't already have a key.
       begin
-        current_user.tweet_message(@share.to_tweet) if @share.need_tweet && current_user.can_tweet?
+        current_user.tweet_message(@share.to_tweet) if @share.need_tweet
         code.save
         redirect_to(share_url(@share), :notice => "Code redeemed! Your code is #{code.code}.")
       rescue Twitter::Error::Unauthorized => e

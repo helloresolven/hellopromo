@@ -1,4 +1,3 @@
-<% unless current_user == @share.owner %>
 <div class="hero-unit" style="text-align:center">
   <p>
   <% if !current_user.nil? && current_user.has_code_for?(@share) %>
@@ -10,4 +9,3 @@
   <% end %>
   </p>
 </div>
-<% end %>
