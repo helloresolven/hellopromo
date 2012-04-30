@@ -1,17 +1,27 @@
 <div class="row">
-<div class="span8">
-<div class="hero-unit">
-  <h1>Hello, Promo</h1>
-  <p>Exchanging app promo codes for tweets.</p>
-  <div class="well"><h4>Sample Tweet</h4><p><%= sample_tweet %></p></div>
-</div>
-</div>
+  <div class="span8">
+    <div class="hero-unit">
+      <h1>Hello, Promo!</h1>
+      <p>Lets users get free promo codes from developers in exchange for a single tweet.</p>
+    </div>
+  </div>
 </div>
 <div class="row">
-<div class="span8" style="text-align:center">
-  <p>
-    <%= link_to "Create A Share", new_share_path, :class => "btn btn-primary btn-large" %>
-    <%= link_to "View Shares &amp; Codes".html_safe, profile_path, :class => "btn btn-large" %>
-  </p>
+  <div class="span8">
+  <h2>Getting Started...</h2>
+  <hr>
+  </div>
 </div>
+<div class="row">
+  <div class="span4">
+    <h3>As a user...</h3>
+    <p>Visit a Hello, Promo link, sign in with twitter, and get a code!  We'll then tweet a single message on your Twitter account about the app you got.</p>
+    <p class="well"><strong>An example tweet:</strong><br><%= sample_tweet %></p>
+    <p>You may return to Hello, Promo at anytime to see a list of all your redeemed codes.</p>
+  </div>
+  <div class="span4">
+    <h3>As a developer...</h3>
+    <p>First, you need to log in with <a href="#" rel="tooltip" title="Use your developer, not personal, Twitter account!">your Twitter account</a> and <%= link_to "create a share", new_share_path %>. Afterwards, share the Hello, Promo! link with everyone who might be interested in your app.</p>
+    <p>From the share page, you'll be able to see all the people who have redeemed a code. You may also add more codes at any time.</p>
+  </div>
 </div>

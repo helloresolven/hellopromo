@@ -1,13 +1,46 @@
-<h1>Your Codes</h1>
-<ol>
-  <% current_user.redeemed_codes.each do |code| %>
-  <li><%= render code %></li>
-  <% end %>
-</ol>
+<h1>Codes You Have Redeemed</h1>
+<table class="table table-striped">
+  <thead>
+    <th>App</th>
+    <th>Code</th>
+  </thead>
+  <tbody>
+    <% current_user.redeemed_codes.each do |code| %>
+    <tr>
+      <td><%= link_to code.share.title, share_path(code.share) %></td>
+      <td><%= code.code %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 <hr>
-<h1>Your Shares</h1>
-<ol>
-  <% current_user.shares.each do |share| %>
-  <li><%= render share %></li>
-  <% end %>
-</ol>
+<h1>Codes You Are Sharing</h1>
+<table class="table table-striped">
+  <thead>
+    <th>Share Title</th>
+    <th>Codes Taken</th>
+    <th>Codes Shared</th>
+    <th>Manage</th>
+  </thead>
+  <tbody>
+    <% current_user.shares.each do |share| %>
+    <tr>
+      <td><%= link_to share.title, share_path(share) %></td>
+      <td><%= share.redeemed_codes.count %></td>
+      <td><%= share.redeemables.count %></td>
+      <td>
+        <% if share.disabled? %>
+        Share has been disabled.
+        <% else %>
+        <%= link_to "Edit", edit_share_path(share), :class=>"btn btn-mini btn-primary"%> 
+        <%= link_to "Disable", share_path(share), 
+        :class=>"btn btn-mini btn-danger", :method => :delete, 
+        :confirm => "Are you sure? This cannot be reversed."%>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Create A New Share", new_share_path, :class => "btn btn-large btn-primary" %>

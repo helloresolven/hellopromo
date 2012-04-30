@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     user = User.find_by_uid(auth["uid"]) || User.create_with_omniauth(auth)
     session[:user_id] = user.id
     
-    redirect_to (session[:return_to] || root_path), :notice => "Signed in!"
+    redirect_to (session[:return_to] || profile_path), :notice => "Signed in!"
   end
   
   def failure
