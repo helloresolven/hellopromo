@@ -23,7 +23,7 @@ describe SharesController do
   let!(:share) { share = Fabricate(:share) }
 
   def valid_attributes
-    {title:"test", url:"http://example.com/", codes:"12\n\n124\n214\n\n"}
+    {title:"test", url:"http://example.com/", codes:"12\n\n124\n214\n\n", description:"hi"}
   end
   
   # This should return the minimal set of values that should be in the session

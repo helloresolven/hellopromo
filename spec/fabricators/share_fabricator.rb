@@ -7,4 +7,5 @@ Fabricator(:share) do
   redeemables!(:count => 2)
   owner! { Fabricate(:user) }
   disabled false
+  description "hello!"
 end

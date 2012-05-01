@@ -31,6 +31,8 @@ group :test do
   gem 'guard-rspec'
   gem 'rb-fsevent'
   gem 'delorean'
+  gem 'database_cleaner'
+  gem 'capybara'
 end
 
 group :assets do

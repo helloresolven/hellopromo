@@ -7,6 +7,7 @@ class Share < ActiveRecord::Base
   
   validates :title, presence:true, length:{maximum:65}
   validates :url, presence:true
+  validates :description, presence:true
   
   validates :share_code, presence:true, uniqueness:true, format: { with: /\A\w+\z/, message:"allows only alphanumerics and underscores"}, length: { minimum: 3 }
   
@@ -38,7 +39,7 @@ class Share < ActiveRecord::Base
   end
   
   def update_description_html
-    self.description_html = Kramdown::Document.new(self.description).to_html if self.description
+    self.description_html = Kramdown::Document.new(self.description).to_html
   end
   
   def convert_codes
